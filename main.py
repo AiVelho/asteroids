@@ -31,9 +31,14 @@ def main():
 		for thing in updatable:
 			thing.update(dt)
 		for asteroid in asteroids:
+			for shot in shots:
+				if asteroid.collides(shot):
+					shot.kill()
+					asteroid.split()
 			if asteroid.collides(player):
 				print("Game over!")
 				sys.exit()
+
 		for thing in drawable:
 			thing.draw(screen)
 		pygame.display.flip()
